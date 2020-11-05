@@ -108,10 +108,10 @@ public class TilesView extends View {
                             for (int row = 0; row < 4; row++) {
                                 for (int col = 0; col < 4; col++) {
                                     if (row == x_i || col == x_j) {
-                                        if (tiles.get(4*i + j).get(4) == 0)
-                                            tiles.get(4*i + j).set(4, 1);
+                                        if (tiles.get(4*row + col).get(4) == 0)
+                                            tiles.get(4*row + col).set(4, 1);
                                         else
-                                            tiles.get(4*i + j).set(4, 0);
+                                            tiles.get(4*row + col).set(4, 0);
                                     }
                                 }
                             }
