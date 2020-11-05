@@ -23,13 +23,7 @@ public class TilesView extends View {
     int height = 350;
     int left = 50;
     int top = 100;
-
-    void ChangeColor(int color){
-        if (color == 1)
-            color = 0;
-        else
-            color = 1;
-    }
+    
     public TilesView(Context context) {
         super(context);
     }
@@ -75,7 +69,6 @@ public class TilesView extends View {
                     color = tiles.get(4*i + j).get(4); //цвет текущего прямоугольника
                     if (color == 0){
                         canvas.drawRect(tile, light);
-                        color = 1;
                     } else {
                         canvas.drawRect(tile, dark);
                         color = 0;
@@ -97,15 +90,14 @@ public class TilesView extends View {
         int x = (int) event.getX();
         int y = (int) event.getY();
         int x_i, x_j;
-
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    if (tiles.get(4*i + j).get(0) < x && tiles.get(4*i + j).get(2) > x) {
+                    if (tiles.get(4*i + j).get(0) > x && tiles.get(4*i + j).get(2) > x) {
                         if (tiles.get(4*i + j).get(1) < y && tiles.get(4*i + j).get(3) > y) {
                             x_i = i;
                             x_j = j;
-                            for (int row = 0; row < 4; row++) {
+                            for (int row = 0; row < 4; row++) { // пересечение линий
                                 for (int col = 0; col < 4; col++) {
                                     if (row == x_i || col == x_j) {
                                         if (tiles.get(4*row + col).get(4) == 0)
